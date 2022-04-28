@@ -41,7 +41,7 @@ const register = asyncHandler(async (req, res, next) => {
   try {
     const user = await User.create(body);
     if (!user) return errorReturn(res, { message: eM });
-    const sendSms = user.sendSmsForRegisterConfirmation();
+    const sendSms = await user.sendSmsForRegisterConfirmation();
     await user.save();
     if (!sendSms) {
       await User.findByIdAndDelete(user._id);

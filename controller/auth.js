@@ -82,7 +82,7 @@ const forgotPassword = asyncHandler(async (req, res, next) => {
 const getProfile = asyncHandler(async (req, res, next) => {
   const { user } = req;
   try {
-    const userFind = await User.findOne({ _id: user.id }).select('-password');
+    const userFind = await User.findOne({ _id: user._id }).select('-password');
     return successReturn(res, {
       user: userFind,
     });
